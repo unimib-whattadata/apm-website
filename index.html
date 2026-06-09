@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="APM - Automotive Predictive Maintenance: piattaforma per la manutenzione predittiva delle flotte basata su IoT, dati e AI." />
+  <title>APM | Automotive Predictive Maintenance</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #14213d;
+      --muted: #5d6b82;
+      --card: #ffffff;
+      --line: #dce3ee;
+      --brand: #1463ff;
+      --brand-dark: #0d3c99;
+      --soft: #eaf1ff;
+      --radius: 22px;
+      --shadow: 0 18px 45px rgba(20, 33, 61, 0.09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 248, 251, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      box-shadow: 0 8px 20px rgba(20, 99, 255, 0.3);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover { color: var(--brand); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(20, 99, 255, 0.25);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--brand-dark);
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .hero {
+      padding: 86px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { line-height: 1.08; margin: 0; letter-spacing: -0.04em; }
+    h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); max-width: 10ch; }
+    h2 { font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 18px; }
+    h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    p { margin: 0; color: var(--muted); }
+
+    .lead {
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      max-width: 68ch;
+      margin: 24px 0 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .signal-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .signal-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px -90px auto auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(20, 99, 255, 0.22), transparent 65%);
+    }
+
+    .metric {
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+      border-radius: 18px;
+      background: #f8fbff;
+      border: 1px solid var(--line);
+    }
+
+    .metric strong { font-size: 2rem; line-height: 1; }
+    .metric span { color: var(--muted); font-size: 0.92rem; }
+
+    .road {
+      height: 120px;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, transparent 0 46%, rgba(255,255,255,0.7) 46% 54%, transparent 54% 100%),
+        linear-gradient(135deg, #1d3557, #14213d);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .road::after {
+      content: "";
+      position: absolute;
+      left: 32px;
+      top: 38px;
+      width: 120px;
+      height: 44px;
+      border-radius: 18px 28px 12px 12px;
+      background: #fff;
+      box-shadow: 190px 16px 0 -6px rgba(255,255,255,0.78);
+    }
+
+    section { padding: 76px 0; }
+
+    .section-head {
+      max-width: 740px;
+      margin-bottom: 30px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      min-height: 100%;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+
+    .step::before {
+      content: counter(step);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      background: var(--brand);
+    }
+
+    .partners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .resources {
+      background: #111827;
+      color: #fff;
+      border-radius: 34px;
+      padding: 42px;
+    }
+
+    .resources p { color: #cbd5e1; }
+    .resources .card {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .resources .icon { background: rgba(255,255,255,0.1); color: #fff; }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    details + details { margin-top: 12px; }
+    summary { cursor: pointer; font-weight: 800; }
+    details p { margin-top: 10px; }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px 14px;
+      font: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea { min-height: 130px; resize: vertical; }
+
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    footer a { color: var(--brand-dark); font-weight: 700; }
+
+    @media (max-width: 850px) {
+      nav ul { display: none; }
+      .hero-grid, .grid-3, .grid-2, .contact { grid-template-columns: 1fr; }
+      .hero { padding-top: 54px; }
+      .signal-card { min-height: 340px; }
+      .resources { padding: 26px; border-radius: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" aria-label="Navigazione principale">
+      <a class="logo" href="#top" aria-label="APM home">
+        <span class="logo-mark">A</span>
+        <span>APM</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#progetto">Il progetto</a></li>
+          <li><a href="#obiettivi">Obiettivi</a></li>
+          <li><a href="#tecnologia">Tecnologia</a></li>
+          <li><a href="#partner">Partner</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="button secondary" href="#contatti">Contatti</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">IoT · Dati · AI per le flotte</span>
+          <h1>Automotive Predictive Maintenance</h1>
+          <p class="lead">APM sviluppa una piattaforma di manutenzione predittiva per aiutare flotte aziendali e trasporto pubblico locale a prevenire guasti, ridurre costi operativi e migliorare la continuità del servizio.</p>
+          <div class="hero-actions">
+            <a class="button" href="#progetto">Scopri il progetto</a>
+            <a class="button secondary" href="#tecnologia">Come funziona</a>
+          </div>
+        </div>
+        <aside class="panel signal-card" aria-label="Sintesi del progetto">
+          <div class="road" aria-hidden="true"></div>
+          <div class="grid-2">
+            <div class="metric"><strong>24/7</strong><span>analisi continua dei dati veicolari</span></div>
+            <div class="metric"><strong>AI</strong><span>modelli predittivi e supporto alle decisioni</span></div>
+            <div class="metric"><strong>IoT</strong><span>dispositivi integrati nelle centraline</span></div>
+            <div class="metric"><strong>Big Data</strong><span>architettura scalabile per dataset ad alta frequenza</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="progetto">
+      <div class="container">
+        <div class="section-head">
+          <h2>Un nuovo modello per la gestione intelligente delle flotte</h2>
+          <p>APM nasce per colmare il divario tra la quantità di dati generati dai veicoli connessi e il loro utilizzo operativo nella manutenzione. La piattaforma trasforma i segnali di bordo in indicazioni utili per pianificare interventi prima che un guasto impatti sul servizio.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Prevenzione</h3>
+            <p>Anticipa anomalie e guasti monitorando il degrado dei componenti nel tempo.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Efficienza</h3>
+            <p>Ottimizza interventi, disponibilità dei mezzi, consumi e continuità operativa.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Scalabilità</h3>
+            <p>Gestisce volumi crescenti di dati con un’architettura pronta per Big Data e AI.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="obiettivi">
+      <div class="container">
+        <div class="section-head">
+          <h2>Obiettivi di sviluppo</h2>
+          <p>Tre direttrici chiare per portare la manutenzione predittiva dalle sperimentazioni alla gestione quotidiana delle flotte.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">↗</div>
+            <h3>Ridurre fermi e costi</h3>
+            <p>Pianificare gli interventi in modo proattivo, limitando manutenzioni impreviste e indisponibilità dei veicoli.</p>
+          </article>
+          <article class="card">
+            <div class="icon">◎</div>
+            <h3>Supportare le decisioni</h3>
+            <p>Fornire indicatori interpretabili a tecnici, gestori di flotta e operatori del trasporto pubblico.</p>
+          </article>
+          <article class="card">
+            <div class="icon">♻</div>
+            <h3>Migliorare sostenibilità</h3>
+            <p>Favorire un uso più efficiente dei mezzi, con potenziali benefici su consumi ed emissioni.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tecnologia">
+      <div class="container grid-2">
+        <div class="section-head">
+          <h2>Come funziona</h2>
+          <p>La piattaforma combina raccolta dati, modelli di machine learning e componenti AI-ready per creare un ciclo continuo di monitoraggio, previsione e ottimizzazione.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div>
+              <h3>Raccolta dati veicolari</h3>
+              <p>Dati ad alta frequenza acquisiti tramite dispositivi IoT connessi alle centraline automotive.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Analisi predittiva</h3>
+              <p>Algoritmi ML individuano pattern, anomalie e segnali di degrado dei componenti.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Decisioni human-centric</h3>
+              <p>Dashboard e alert supportano operatori e responsabili nella scelta dell’intervento migliore.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Ottimizzazione continua</h3>
+              <p>L’architettura Big Data consente di migliorare modelli e processi al crescere dei dati disponibili.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partner">
+      <div class="container">
+        <div class="section-head">
+          <h2>Partner e contesto</h2>
+          <p>Il progetto è cofinanziato nell’ambito degli Accordi per l’innovazione del Ministero delle Imprese e del Made in Italy e coinvolge imprese e partner scientifici.</p>
+        </div>
+        <div class="partners" aria-label="Elenco partner">
+          <span class="tag">ATON Informatica</span>
+          <span class="tag">Fincons Group</span>
+          <span class="tag">Università degli Studi di Milano-Bicocca</span>
+          <span class="tag">Sapienza Università di Roma</span>
+          <span class="tag">MIMIT</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container resources">
+        <div class="section-head">
+          <h2>Risorse del progetto</h2>
+          <p>Una struttura minimale ispirata ai siti di progetto: documenti, aggiornamenti e canali di contatto possono essere aggiunti man mano che il progetto evolve.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">P</div>
+            <h3>Piattaforma</h3>
+            <p>Descrizione dei moduli, delle funzionalità e degli scenari di utilizzo.</p>
+          </article>
+          <article class="card">
+            <div class="icon">N</div>
+            <h3>News</h3>
+            <p>Aggiornamenti su rilasci, milestone, sperimentazioni e risultati.</p>
+          </article>
+          <article class="card">
+            <div class="icon">D</div>
+            <h3>Documentazione</h3>
+            <p>Materiali tecnici, schede informative e risultati divulgativi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container grid-2">
+        <div class="section-head">
+          <h2>FAQ</h2>
+          <p>Domande di base per spiegare il valore del progetto a stakeholder tecnici e non tecnici.</p>
+        </div>
+        <div>
+          <details>
+            <summary>A cosa serve APM?</summary>
+            <p>A trasformare i dati dei veicoli in previsioni utili per anticipare guasti, programmare interventi e mantenere il servizio operativo.</p>
+          </details>
+          <details>
+            <summary>Quali tecnologie utilizza?</summary>
+            <p>IoT, analisi dati, machine learning, approcci human-in-the-loop e componenti software per ecosistemi automotive connessi.</p>
+          </details>
+          <details>
+            <summary>Chi può beneficiarne?</summary>
+            <p>Gestori di flotte aziendali, operatori del trasporto pubblico locale, manutentori e organizzazioni che gestiscono veicoli connessi.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <div class="container contact">
+        <div class="card">
+          <h2>Contatti</h2>
+          <p>Sezione pronta per essere collegata a un indirizzo email, un CRM o un backend. In questa versione il form è statico.</p>
+        </div>
+        <form class="card" aria-label="Modulo contatti">
+          <label>
+            Nome
+            <input type="text" name="nome" placeholder="Il tuo nome" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="nome@azienda.it" />
+          </label>
+          <label>
+            Messaggio
+            <textarea name="messaggio" placeholder="Scrivi qui la tua richiesta"></textarea>
+          </label>
+          <button class="button" type="button">Invia richiesta</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Aton IT - Automotive Predictive Maintenance.</p>
+    </div>
+  </footer>
+</body>
+</html>
