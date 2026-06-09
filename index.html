@@ -62,15 +62,10 @@
       letter-spacing: -0.03em;
     }
 
-    .logo-mark {
-      width: 36px;
+    .logo-img {
       height: 36px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      color: #fff;
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      box-shadow: 0 8px 20px rgba(20, 99, 255, 0.3);
+      width: auto;
+      object-fit: contain;
     }
 
     nav ul {
@@ -355,10 +350,382 @@
 
     @media (max-width: 850px) {
       nav ul { display: none; }
-      .hero-grid, .grid-3, .grid-2, .contact { grid-template-columns: 1fr; }
+      .hero-grid, .grid-3, .grid-2, .contact, .partner-grid, .or-cards-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 54px; }
       .signal-card { min-height: 340px; }
       .resources { padding: 26px; border-radius: 26px; }
+      .mimit-co-financing { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .timeline::before { left: 21px; }
+      .timeline-item { padding-left: 44px; }
+      .timeline-badge { left: 0; }
+    }
+
+    /* --- TIMELINE RILASCI --- */
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 40px auto 0;
+      padding: 0 20px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 31px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--brand) 0%, var(--line) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 60px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-badge {
+      position: absolute;
+      left: 10px;
+      top: 4px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-badge.completed {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(20, 99, 255, 0.4);
+    }
+
+    .timeline-badge.active {
+      background: var(--soft);
+      border-color: var(--brand);
+      color: var(--brand-dark);
+      box-shadow: 0 0 15px rgba(20, 99, 255, 0.2);
+    }
+
+    .timeline-badge.planned {
+      background: var(--card);
+      border-color: var(--line);
+      color: var(--muted);
+    }
+
+    .timeline-panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .timeline-panel:hover {
+      transform: translateX(4px);
+      border-color: var(--brand);
+    }
+
+    .timeline-heading {
+      margin-bottom: 12px;
+    }
+
+    .timeline-status-tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-status-tag.completed {
+      background: #e2fbe8;
+      color: #1e7e34;
+    }
+
+    .timeline-status-tag.active {
+      background: var(--soft);
+      color: var(--brand-dark);
+    }
+
+    .timeline-status-tag.planned {
+      background: #f1f3f7;
+      color: var(--muted);
+    }
+
+    .timeline-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 0 0 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .timeline-meta {
+      font-size: 0.85rem;
+      color: var(--brand-dark);
+      font-weight: 700;
+    }
+
+    .timeline-body p {
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .timeline-intro {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 4px 0 0;
+      line-height: 1.5;
+    }
+
+    /* --- OR CARDS IN ROADMAP --- */
+    .or-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .or-subcard {
+      background: #f8fbff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.25s ease;
+      text-align: left;
+    }
+
+    .or-subcard:hover {
+      border-color: var(--brand);
+      background: #ffffff;
+      box-shadow: 0 12px 30px rgba(20, 99, 255, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .or-subcard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .or-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: 8px;
+    }
+
+    .or-partner {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .or-subcard h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .or-subcard p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* --- SCHEDE PARTNER --- */
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 40px;
+    }
+
+    .partner-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .partner-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--brand);
+      box-shadow: 0 25px 60px rgba(20, 99, 255, 0.12);
+    }
+
+    .partner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .partner-title-info h3 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin: 0 0 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .partner-role {
+      display: inline-block;
+      font-size: 0.88rem;
+      color: var(--brand);
+      font-weight: 700;
+    }
+
+    .partner-logo-container {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      background: #f8fbff;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .partner-logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .partner-card:hover .partner-logo-img {
+      transform: scale(1.08);
+    }
+
+    .partner-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+
+    .partner-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px 20px;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+    }
+
+    .partner-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .partner-contact:hover {
+      color: var(--brand);
+    }
+
+    .contact-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .partner-link {
+      margin-left: auto;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--brand-dark);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .partner-link:hover {
+      color: var(--brand);
+      transform: translateX(3px);
+    }
+
+    .mimit-co-financing {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: var(--soft);
+      border-color: var(--line);
+      padding: 24px 32px;
+      border-radius: var(--radius);
+    }
+
+    .mimit-badge {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      border-radius: 14px;
+      box-shadow: 0 6px 15px rgba(20, 99, 255, 0.25);
+      flex-shrink: 0;
+    }
+
+    .mimit-co-financing p {
+      font-size: 0.95rem;
+      color: var(--brand-dark);
+      line-height: 1.5;
+    }
+
+    /* FAQ interactive adjustments */
+    details {
+      transition: all 0.3s ease;
+    }
+    details:hover {
+      border-color: var(--brand);
+      box-shadow: 0 10px 25px rgba(20, 99, 255, 0.05);
+    }
+    details[open] {
+      border-color: var(--brand);
+      background: #fcfdfe;
+    }
+    summary:focus-visible {
+      outline: 2px solid var(--brand);
+      outline-offset: 4px;
     }
   </style>
 </head>
@@ -366,14 +733,14 @@
   <header>
     <div class="container nav" aria-label="Navigazione principale">
       <a class="logo" href="#top" aria-label="APM home">
-        <span class="logo-mark">A</span>
-        <span>APM</span>
+        <img src="images/APMLogo.png" alt="APM Logo" class="logo-img" />
       </a>
       <nav>
         <ul>
           <li><a href="#progetto">Il progetto</a></li>
           <li><a href="#obiettivi">Obiettivi</a></li>
           <li><a href="#tecnologia">Tecnologia</a></li>
+          <li><a href="#rilasci">Rilasci</a></li>
           <li><a href="#partner">Partner</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -410,7 +777,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Un nuovo modello per la gestione intelligente delle flotte</h2>
-          <p>APM nasce per colmare il divario tra la quantità di dati generati dai veicoli connessi e il loro utilizzo operativo nella manutenzione. La piattaforma trasforma i segnali di bordo in indicazioni utili per pianificare interventi prima che un guasto impatti sul servizio.</p>
+          <p>APM nasce per colmare il divario tra la quantità di dati generati dai veicoli connessi e il loro utilizzo operativo nella manutenzione. Co-finanziato dal <strong>Ministero delle Imprese e del Made in Italy (MIMIT)</strong> nell'ambito del bando <em>Accordi per l'innovazione</em>, il progetto adotta un approccio basato sull'ingestione in streaming dei dati provenienti da centraline automotive <strong>CAN FMS (SAE J1939)</strong> connesse a dispositivi IoT (OBU) di bordo. Il flusso dati viene mediato e normalizzato (modulo <strong>DataLane</strong>) e storicizzato in un <strong>Datalake</strong> (Kafka/TimescaleDB/Hadoop), consentendo a modelli di Machine Learning di analizzare anomalie e stimare la vita utile residua (<strong>RUL</strong>) dei componenti critici delle flotte.</p>
         </div>
         <div class="grid-3">
           <article class="card">
@@ -493,18 +860,231 @@
       </div>
     </section>
 
+    <section id="rilasci">
+      <div class="container">
+        <div class="section-head">
+          <h2>Roadmap e Obiettivi Realizzativi (OR)</h2>
+          <p>La pianificazione dello sviluppo del progetto APM, strutturata secondo le fasi di Ricerca Industriale (RI) e Sviluppo Sperimentale (SS) e gli 8 Obiettivi Realizzativi del piano di lavoro.</p>
+        </div>
+        <div class="timeline">
+          <!-- Ricerca Industriale -->
+          <div class="timeline-item">
+            <div class="timeline-badge completed">RI</div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <span class="timeline-status-tag completed">Mesi 1 - 18</span>
+                <h3 class="timeline-title">Ricerca Industriale</h3>
+                <p class="timeline-intro">Fase incentrata sull'analisi iniziale dei contesti aziendali e TPL, sulla definizione dei requisiti e sulla modellazione dei metodi di manutenzione predittiva.</p>
+              </div>
+              <div class="timeline-body">
+                <div class="or-cards-grid">
+                  <!-- OR1 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR1</span>
+                      <span class="or-partner">Fincons</span>
+                    </div>
+                    <h4>Analisi scenario &amp; requisiti dominio aziendale</h4>
+                    <p>L'OR ha lo scopo di analizzare l'environment al fine di ottenere un assetto dati che permetta l'elaborazione di data model e la definizione dei flussi di comunicazione degli stessi.</p>
+                  </div>
+                  <!-- OR2 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR2</span>
+                      <span class="or-partner">Aton</span>
+                    </div>
+                    <h4>Analisi scenario &amp; requisiti dominio TPL</h4>
+                    <p>L'OR prevede l'analisi dei dati e delle soluzioni hardware e software utilizzate nel dominio TPL e la definizione delle specifiche per la comunicazione tra provider di TPL e datalake del progetto.</p>
+                  </div>
+                  <!-- OR3 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR3</span>
+                      <span class="or-partner">UniMiB</span>
+                    </div>
+                    <h4>Manutenzione predittiva nel dominio aziendale</h4>
+                    <p>L'OR prevede la definizione di metodi per la manutenzione predittiva in ambito flotte aziendali e la definizione di analitiche finalizzate alla creazione di un ambiente di dati completo, affidabile e coerente, considerando le differenze meccaniche tra mezzi a combustione ed elettrici.</p>
+                  </div>
+                  <!-- OR4 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR4</span>
+                      <span class="or-partner">Sapienza</span>
+                    </div>
+                    <h4>Manutenzione predittiva nel dominio TPL</h4>
+                    <p>L'OR prevede la definizione di metodi per la manutenzione predittiva in ambito TPL e la definizione di analitiche finalizzate a creare un ambiente di dati completo, affidabile e coerente.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sviluppo Sperimentale -->
+          <div class="timeline-item">
+            <div class="timeline-badge active">SS</div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <span class="timeline-status-tag active">Mesi 12 - 36</span>
+                <h3 class="timeline-title">Sviluppo Sperimentale</h3>
+                <p class="timeline-intro">Fase focalizzata sulla progettazione delle infrastrutture, sullo sviluppo dei modelli di Machine Learning, sulla progettazione della dashboard e sullo sviluppo del backend.</p>
+              </div>
+              <div class="timeline-body">
+                <div class="or-cards-grid">
+                  <!-- OR5 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR5</span>
+                      <span class="or-partner">Sapienza</span>
+                    </div>
+                    <h4>Infrastruttura IoT, Datalake &amp; realizzazione POC</h4>
+                    <p>L'OR prevede la progettazione e la POC di una infrastruttura IoT per la gestione dei dati del TPL, consistente di due componenti principali: un gateway e un datalake.</p>
+                  </div>
+                  <!-- OR6 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR6</span>
+                      <span class="or-partner">UniMiB</span>
+                    </div>
+                    <h4>Progettazione del modello di ML</h4>
+                    <p>L’OR è organizzato in due macro attività: analisi dello stato dell’arte relativo a modelli di ML per la manutenzione predittiva di flotte aziendali, definizione della metodologia per la gestione dei dati, addestramento e riaddestramento; implementazione, ottimizzazione e valutazione in ambiente controllato.</p>
+                  </div>
+                  <!-- OR7 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR7</span>
+                      <span class="or-partner">Aton</span>
+                    </div>
+                    <h4>Interfacce di gestione della piattaforma APM</h4>
+                    <p>L’OR prevede la progettazione di un applicativo Web che permetta di visualizzare e gestire le informazioni sulla flotta. Attraverso tale applicativo sarà possibile consultare le analisi del modello di ML.</p>
+                  </div>
+                  <!-- OR8 -->
+                  <div class="or-subcard">
+                    <div class="or-subcard-header">
+                      <span class="or-badge">OR8</span>
+                      <span class="or-partner">Fincons</span>
+                    </div>
+                    <h4>Implementazione microservizi &amp; backend</h4>
+                    <p>L'OR prevede lo sviluppo e l'installazione della componente di backend, dell'IoT gateway, del Datalake e del Metadata Repository.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="partner">
       <div class="container">
         <div class="section-head">
-          <h2>Partner e contesto</h2>
-          <p>Il progetto è cofinanziato nell’ambito degli Accordi per l’innovazione del Ministero delle Imprese e del Made in Italy e coinvolge imprese e partner scientifici.</p>
+          <h2>I Partner del Progetto</h2>
+          <p>Il consorzio unisce eccellenze industriali e istituzioni di ricerca scientifica per combinare competenze tecnologiche, operative e accademiche.</p>
         </div>
-        <div class="partners" aria-label="Elenco partner">
-          <span class="tag">ATON Informatica</span>
-          <span class="tag">Fincons Group</span>
-          <span class="tag">Università degli Studi di Milano-Bicocca</span>
-          <span class="tag">Sapienza Università di Roma</span>
-          <span class="tag">MIMIT</span>
+        <div class="partner-grid">
+          <!-- Aton IT -->
+          <article class="partner-card">
+            <div class="partner-header">
+              <div class="partner-title-info">
+                <h3>ATON IT</h3>
+                <span class="partner-role">Interfacce, Frontend &amp; UX/UI</span>
+              </div>
+              <div class="partner-logo-container">
+                <img src="images/AtonLogo.svg" alt="Logo Aton IT" class="partner-logo-img" />
+              </div>
+            </div>
+            <p class="partner-desc">Presente sul mercato ICT dal 2014, Aton Informatica S.r.l. offre specifiche competenze applicative, sistemistiche e consulenziali. All'interno del progetto APM, Aton guida lo sviluppo sperimentale delle interfacce (OR7), gestendo l'architettura dell'informazione, lo UI Kit, i mockup interattivi ad alta fedeltà e l'implementazione della Dashboard in React, testata mediante il framework Jakob Nielsen.</p>
+            <div class="partner-footer">
+              <a href="mailto:fabio.petriccione@atonit.eu" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                F. Petriccione
+              </a>
+              <a href="mailto:chiara.sciarretti@atonit.eu" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                C. Sciarretti
+              </a>
+              <a href="https://www.atonit.eu" target="_blank" rel="noopener" class="partner-link">Sito Web &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Fincons Group -->
+          <article class="partner-card">
+            <div class="partner-header">
+              <div class="partner-title-info">
+                <h3>Fincons Group</h3>
+                <span class="partner-role">Backend, IoT Gateway &amp; Datalake</span>
+              </div>
+              <div class="partner-logo-container">
+                <img src="https://www.finconsgroup.com/imgpub/2044508/0/0/logo_fincons.svg" alt="Logo Fincons Group" class="partner-logo-img" />
+              </div>
+            </div>
+            <p class="partner-desc">Con 40 anni di storia e oltre 2600 collaboratori nel mondo, Fincons è una primaria società di consulenza IT e system integration. In APM è responsabile dell'analisi dello scenario aziendale (OR1) e dello sviluppo del backend (OR8), realizzando l'architettura a microservizi in cloud, l'IoT Gateway (MQTT), il Metadata Repository e l'integrazione e monitoraggio della propria flotta aziendale (con numero di veicoli da rilevare).</p>
+            <div class="partner-footer">
+              <a href="mailto:matteo.villa@finconsgroup.com" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                M. Villa
+              </a>
+              <a href="mailto:marcello.scipioni@finconsgroup.com" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                M. Scipioni
+              </a>
+              <a href="https://www.finconsgroup.com" target="_blank" rel="noopener" class="partner-link">Sito Web &rarr;</a>
+            </div>
+          </article>
+
+          <!-- UNIMIB -->
+          <article class="partner-card">
+            <div class="partner-header">
+              <div class="partner-title-info">
+                <h3>UniMiB</h3>
+                <span class="partner-role">Modelli ML &amp; Coordinamento Scientifico</span>
+              </div>
+              <div class="partner-logo-container">
+                <img src="https://www.unimib.it/sites/default/files/logo.png" alt="Logo UniMiB" class="partner-logo-img" />
+              </div>
+            </div>
+            <p class="partner-desc">L'Università degli Studi di Milano-Bicocca partecipa con il Dipartimento di Informatica, Sistemistica e Comunicazione (DISCO) e il laboratorio INSID&S. Sotto il coordinamento del prof. Andrea Maurino (responsabile scientifico del progetto), UNIMIB cura la modellazione concettuale per la flotta aziendale (OR3), lo sviluppo dei modelli predittivi ML/Deep Learning (OR6) e la definizione delle metriche di data quality.</p>
+            <div class="partner-footer">
+              <a href="mailto:andrea.maurino@unimib.it" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                Prof. A. Maurino
+              </a>
+              <a href="mailto:marco.cremaschi@unimib.it" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                M. Cremaschi
+              </a>
+              <a href="https://www.disco.unimib.it" target="_blank" rel="noopener" class="partner-link">Sito Web &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Sapienza -->
+          <article class="partner-card">
+            <div class="partner-header">
+              <div class="partner-title-info">
+                <h3>Sapienza Roma</h3>
+                <span class="partner-role">Analitiche TPL &amp; POC IoT/Datalake</span>
+              </div>
+              <div class="partner-logo-container">
+                <img src="https://www.uniroma1.it/sites/default/files/images/logo/sapienza-big.png" alt="Logo Sapienza Università di Roma" class="partner-logo-img" />
+              </div>
+            </div>
+            <p class="partner-desc">La Sapienza Università di Roma partecipa con il Dipartimento di Ingegneria Informatica, Automatica e Gestionale "Antonio Ruberti" (DIAG) e il DASIlab. Sotto la direzione del prof. Massimo Mecella, Sapienza è responsabile della modellazione predittiva nel dominio del TPL (OR4) e dello sviluppo del POC dell'infrastruttura IoT e del Datalake (OR5) con tecnologie NoSQL, Kafka e TimescaleDB.</p>
+            <div class="partner-footer">
+              <a href="mailto:mecella@diag.uniroma1.it" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                Prof. M. Mecella
+              </a>
+              <a href="mailto:donatella.firmani@uniroma1.it" class="partner-contact">
+                <svg viewBox="0 0 24 24" class="contact-icon" width="16" height="16"><path d="M20 0H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+                D. Firmani
+              </a>
+              <a href="https://www.diag.uniroma1.it" target="_blank" rel="noopener" class="partner-link">Sito Web &rarr;</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="mimit-co-financing panel">
+          <div class="mimit-badge">MIMIT</div>
+          <p>Il progetto <strong>APM (Automotive Predictive Maintenance)</strong> è cofinanziato nell’ambito degli <strong>Accordi per l’innovazione (Secondo Sportello)</strong> del <strong>Ministero delle Imprese e del Made in Italy (MIMIT)</strong>, con un budget totale ammissibile di €6.162.250,00 volto a stimolare la digitalizzazione, la sostenibilità e la transizione verde della mobilità aziendale e pubblica.</p>
         </div>
       </div>
     </section>
@@ -538,21 +1118,41 @@
     <section id="faq">
       <div class="container grid-2">
         <div class="section-head">
-          <h2>FAQ</h2>
-          <p>Domande di base per spiegare il valore del progetto a stakeholder tecnici e non tecnici.</p>
+          <h2>FAQ e Approfondimenti</h2>
+          <p>Risposte alle domande più frequenti sugli obiettivi tecnici, le tecnologie implementate e i partner coinvolti nel progetto APM.</p>
         </div>
         <div>
           <details>
             <summary>A cosa serve APM?</summary>
-            <p>A trasformare i dati dei veicoli in previsioni utili per anticipare guasti, programmare interventi e mantenere il servizio operativo.</p>
+            <p>A trasformare i dati dei veicoli in previsioni utili per anticipare guasti, programmare interventi e mantenere il servizio operativo delle flotte in tempo reale.</p>
           </details>
           <details>
             <summary>Quali tecnologie utilizza?</summary>
-            <p>IoT, analisi dati, machine learning, approcci human-in-the-loop e componenti software per ecosistemi automotive connessi.</p>
+            <p>Combina sensori IoT di bordo, protocolli standard automotive, architetture Big Data (Kafka, Datalake NoSQL, TimescaleDB, Hadoop) e algoritmi di intelligenza artificiale per l'analisi predittiva e l'usabilità human-in-the-loop.</p>
           </details>
           <details>
             <summary>Chi può beneficiarne?</summary>
-            <p>Gestori di flotte aziendali, operatori del trasporto pubblico locale, manutentori e organizzazioni che gestiscono veicoli connessi.</p>
+            <p>Gestori di flotte aziendali, operatori del trasporto pubblico locale, manutentori e organizzazioni che gestiscono veicoli connessi che desiderano ridurre i costi operativi e le emissioni.</p>
+          </details>
+          <details>
+            <summary>Quali sono le flotte reali coinvolte nella sperimentazione?</summary>
+            <p>Il progetto analizza dati reali provenienti da tre contesti operativi principali: la <strong>flotta aziendale di Fincons</strong> (per il dominio corporate, con un numero di veicoli da rilevare nel corso della sperimentazione), la flotta di <strong>COTRAL S.p.A.</strong> (circa 1600 autobus extraurbani alimentati a diesel e CNG) e la flotta di <strong>ROMA TPL S.c.a.r.l.</strong> (circa 500 autobus urbani, con elettrificazione progressiva di 400 mezzi).</p>
+          </details>
+          <details>
+            <summary>Come viene garantita la privacy dei dati delle flotte aziendali?</summary>
+            <p>La privacy è garantita da un'architettura decentralizzata basata su <strong>Federated Learning (Apprendimento Federato)</strong>. Ciascuna flotta allena i propri modelli predittivi localmente, e solo i pesi (i parametri matematici del modello di ML) vengono scambiati con un nodo centrale per la generalizzazione, impedendo la condivisione diretta di dati sensibili industriali o operativi.</p>
+          </details>
+          <details>
+            <summary>Quali parametri diagnostici e dati veicolari vengono rilevati?</summary>
+            <p>I dati vengono letti direttamente dalle centraline tramite protocollo standard <strong>CAN FMS (SAE J1939)</strong> e includono parametri vitali come velocità, giri motore, temperatura del liquido di raffreddamento, pressione e temperatura pneumatici, voltaggio e stato della batteria (SOC/SOH per veicoli elettrici ed ibridi), consumi, allarmi diagnostici di bordo (DTC - Diagnostic Trouble Codes) e dati accelerometrici.</p>
+          </details>
+          <details>
+            <summary>Quali modelli e algoritmi di Intelligenza Artificiale sono implementati?</summary>
+            <p>La piattaforma implementa un approccio ibrido: <strong>Anomaly Detection non supervisionata</strong> (con isolation forest e autoencoder) per rilevare deviazioni anomale senza etichette di guasto preesistenti; <strong>Supervised Learning e Deep Learning</strong> (reti neurali LSTM, CNN-LSTM, TCN e Transformers) per analizzare serie temporali complesse; e <strong>modelli di sopravvivenza</strong> (Kaplan-Meier, Cox regression, Random Survival Forest) per stimare la vita utile residua (RUL - Remaining Useful Life) dei componenti critici.</p>
+          </details>
+          <details>
+            <summary>Qual è l'impatto ecologico di APM e come rispetta il principio DNSH?</summary>
+            <p>Il progetto rispetta il principio DNSH (Do No Significant Harm) promuovendo la sostenibilità ambientale: la riduzione dei guasti e dei fermi macchina porta a un uso efficiente dei veicoli con un risparmio del 20-30% di carburante/elettricità, riduzione delle emissioni inquinanti e riduzione dello smaltimento precoce di componenti ad usura (freni, lubrificanti ed accumulatori).</p>
           </details>
         </div>
       </div>
